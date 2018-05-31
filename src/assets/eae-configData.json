@@ -1,0 +1,22 @@
+[
+    {
+        "app": "MST",
+        "url": "",
+        "expectedQos": "99.9",
+        "expected99P": "99.0",
+        "expected95P": "98.0"
+    },
+{       "app": "CST",
+        "url": "",
+        "expectedQos": "99.9",
+        "expected99P": "99.0",
+        "expected95P": "98.0"
+    },
+    { 
+        "app": "CASES",
+        "url": "",
+        "expectedQos": "99.9",
+        "expected99P": "99.0",
+        "expected95P": "98.0"
+    }
+]

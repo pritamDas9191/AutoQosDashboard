@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSelectChange } from '@angular/material';
+import { QosdataService } from '../qosdata.service';
 
 @Component({
   selector: 'app-filters',
@@ -7,15 +9,51 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FiltersComponent implements OnInit {
 
-  constructor() { }
+  isServiceAvailable = false;
+  areAppsAvailable = false;
+  readyToFetch = false;
+
+  msegServices = [
+    {value: 'eae', viewValue: 'EAE'},
+    {value: 'cmc', viewValue: 'CMC'},
+    {value: 'did', viewValue: 'DID'}
+  ];
+
+  duration = [
+    {value: 'monthly', viewValue: 'Monthly'},
+    {value: 'weekly', viewValue: 'Weekly'},
+  ];
+
+  msegAppsPerService = [];
+
+  constructor(private qosDataService: QosdataService) { }
 
   ngOnInit() {
   }
 
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
+  onServiceChange(change: MatSelectChange) {
+    if (change.value) {
+      this.isServiceAvailable = true;
+      this.qosDataService.currentService = change.value;
+      this.qosDataService.getAppsFromService().subscribe((appConfig: any) => {
+        appConfig.forEach(config => {
+          this.msegAppsPerService.push({value: config.app.toLowerCase(), viewValue: config.app});
+        });
+      });
+    }
+  }
 
+  onAppChange(change: MatSelectChange) {
+    if (change.value) {
+      this.areAppsAvailable = true;
+      this.qosDataService.currentApp = change.value;
+    }
+  }
+
+  onDurationChange(change: MatSelectChange) {
+    if (change.value) {
+      this.readyToFetch = true;
+      this.qosDataService.currentDuration = change.value;
+    }
+  }
 }

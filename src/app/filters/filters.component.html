@@ -1,9 +1,24 @@
 <div>
   <mat-form-field>
-    <mat-select placeholder="Favorite food">
-      <mat-option *ngFor="let food of foods" [value]="food.value">
-        {{ food.viewValue }}
+    <mat-select (selectionChange)="onServiceChange($event)" placeholder="Select a service">
+      <mat-option *ngFor="let service of msegServices" [value]="service.value">
+        {{ service.viewValue }}
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <mat-form-field>
+    <mat-select (selectionChange)="onAppChange($event)" [disabled]="!isServiceAvailable" placeholder="Select an app">
+      <mat-option *ngFor="let app of msegAppsPerService" [value]="app.value">
+        {{ app.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select (selectionChange)="onDurationChange($event)" [disabled]="!areAppsAvailable" placeholder="Select duration">
+      <mat-option *ngFor="let timeFrame of duration" [value]="timeFrame.value">
+        {{ timeFrame.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button (click)="getQosData()" [disabled]="!readyToFetch" mat-raised-button color="violet">Fetch</button>
 </div>
