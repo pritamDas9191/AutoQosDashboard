@@ -10,7 +10,9 @@ import { TrendComponent } from './trend/trend.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSelectModule } from '@angular/material';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatDatepickerModule, MatInputModule } from '@angular/material';
+import { MatNativeDateModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     HttpClientModule,
     BrowserAnimationsModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

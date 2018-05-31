@@ -20,5 +20,15 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <mat-form-field *ngIf="isCustomDurationSelected">
+    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="startpicker" placeholder="Choose start date">
+      <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+      <mat-datepicker #startpicker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field *ngIf="isCustomDurationSelected">
+    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="endpicker" placeholder="Choose end date">
+      <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+      <mat-datepicker #endpicker></mat-datepicker>
+  </mat-form-field>
   <button (click)="getQosData()" [disabled]="!readyToFetch" mat-raised-button color="violet">Fetch</button>
 </div>
